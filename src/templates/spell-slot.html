@@ -1,0 +1,10 @@
+<div id="drop-zone" style="border: 2px dashed gray; padding: 10px; text-align: center;">
+    {{#if spell}}
+      <div class="item" data-item-id="{{spell._id}}" style="display: flex; align-items: center; gap: 0.5em;">
+        <img src="{{spell.img}}" width="32" height="32"/>
+        <span>{{spell.name}}</span>
+      </div>
+    {{else}}
+      <p>Перетащи сюда заклинание</p>
+    {{/if}}
+  </div>

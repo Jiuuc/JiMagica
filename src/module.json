@@ -1,0 +1,50 @@
+{
+  "name": "ji-magica",
+  "title": "JiMagica",
+  "description": "", 
+  "authors": [
+    {
+      "name": "Jiuuc",
+      "discord": "jiuuc"
+    }
+  ],
+  "version": "0.0.1",
+  "compatibility": {
+		"minimum": "11",
+		"verified": "13.338"
+	},
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    }, 
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "esmodules": [
+    "scripts/module.js",
+    "scripts/settings.js",
+    "scripts/element.js",
+    "scripts/caster.js",
+    "scripts/spellBookMenu.js"
+  ],
+  "styles": [
+    "styles/module.css"
+  ],
+  "languages": [
+    {
+      "lang": "ru",
+      "name": "Russian",
+      "path": "lang/ru.json"
+    }
+  ]
+}

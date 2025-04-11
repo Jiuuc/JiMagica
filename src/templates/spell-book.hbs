@@ -1,0 +1,19 @@
+<form class="spell-slot-form">
+  <div class="slots">
+    {{#if slots.length}}
+      {{#each slots as |uuid index|}}
+        {{#with (fromUuid uuid) as |item|}}
+          <div class="slot filled" data-uuid="{{uuid}}">
+            <img src="{{item.img}}" width="32" height="32"/>
+          </div>
+        {{/with}}
+      {{/each}}
+    {{else}}
+      {{#each (range 0 2) as |i|}}
+        <div class="slot empty" data-index="{{i}}">
+          <p>+</p>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+</form>
