@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main",
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#documents-v2",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "5.4"

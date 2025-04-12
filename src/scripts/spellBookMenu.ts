@@ -1,6 +1,7 @@
-export class SpellSlotMenu extends FormApplication {
-  static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+export class SpellSlotMenu extends Application {
+  
+  static get defaultOptions() : Application.Options {
+    return foundry.utils.mergeObject(Application.defaultOptions, {
       id: "spell-slot-menu",
       title: "Книга заклинаний",
       template: "modules/ji-magica/templates/spell-book.hbs",
@@ -12,11 +13,11 @@ export class SpellSlotMenu extends FormApplication {
   }
 
   async getData(): Promise<any> {
-    const spellSlots: string[] = game.user.getFlag("ji-magica", "spellSlots") ?? [];
+    const spellSlots: string[] = game?.user?.getFlag("ji-magica", "spellSlots") ?? [];
     
-    const item = await fromUuid(spellSlots[0]);
+    const item = await fromUuid(spellSlots[0] as `Item.${string}`);
     console.log(item?.name)
-    
+
     return {
       slots: spellSlots.slice(0, 3),
     };
@@ -44,14 +45,14 @@ export class SpellSlotMenu extends FormApplication {
     const item = await fromUuid(data.uuid);
     if (!item) return;
 
-    const spellSlots: string[] = game.user.getFlag("ji-magica", "spellSlots") ?? [];
+    const spellSlots: string[] = game?.user?.getFlag("ji-magica", "spellSlots") ?? [];
     if (spellSlots.length >= 3) {
-      ui.notifications.warn("Только 3 заклинания можно сохранить.");
+      ui.notifications?.warn("Только 3 заклинания можно сохранить.");
       return;
     }
 
     spellSlots.push(data.uuid);
-    await game.user.setFlag("ji-magica", "spellSlots", spellSlots);
+    await game?.user?.setFlag("ji-magica", "spellSlots", spellSlots);
     this.render();
   }
 }

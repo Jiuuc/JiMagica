@@ -4,12 +4,8 @@ import { MagicElement } from "./element.js";
 
 Hooks.once("init", () => {
   Settings.registerKeybinds();
-  game.settings.register("my-module", "spell-slot", {
-    scope: "client",
-    config: false,
-    type: String,
-    default: "",
-  });
+
+  // @ts-ignore
   CONFIG.DND5E.itemRarity["element"] = "Элемент";
   const originalRender = Application.prototype.render;
 
@@ -29,11 +25,11 @@ Hooks.on("renderAnyApplication", (app: Application, html: JQuery<HTMLElement>, d
   
 })
 
-Hooks.on("createChatMessage", (message: ChatMessage, options, userId) => {
-    if (message.user.isGM) return
+Hooks.on("createChatMessage", (message: ChatMessage) => {
+    if (message.author.isGM) return
     
     const content = message.export();
-    const speaker = message.user;
+    const speaker = message.author;
     Main.logInChat(`🗨 Сообщение от ${speaker.name || "неизвестно"}: ${content}`);
   });
 
@@ -46,7 +42,7 @@ export class Main {
     ChatMessage.create({content: str});
   }
 
-  static getCaster(actor: Actor): Caster {
+  static getCaster(actor: Actor): Caster | undefined {
     if (this.casters.has(actor)) return this.casters.get(actor);
 
     const caster = new Caster(actor, new MagicElement("Огонь"), new MagicElement("Вода"), new MagicElement("Земля"));
@@ -69,3 +65,12 @@ Handlebars.registerHelper("range", function (from: number, to: number) {
   }
   return arr;
 });
+
+/*
+  game.settings?.register("my-module", "spell-slot", {
+    scope: "client",
+    config: false,
+    type: String,
+    default: "",
+  });
+  */
